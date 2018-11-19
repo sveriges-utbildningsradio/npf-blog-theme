@@ -1,0 +1,43 @@
+// SEARCH
+.search-form input[type="text"] {
+	width: 160px;
+	margin-right: 5px;
+	padding: 4px;
+	font-size: 1em;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1.5px solid $dark;
+  background-color: $light;
+}
+.search-form input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $dark;
+  font-style: italic;
+}
+.search-form input[type="text"]::-moz-placeholder { /* Chrome/Opera/Safari */
+  color: $dark;
+  font-style: italic;
+}
+.search-form input[type="text"]:-ms-input-placeholder { /* Chrome/Opera/Safari */
+  color: $dark;
+  font-style: italic;
+}
+.search-form input[type="text"]:-ms-input-placeholder { /* Chrome/Opera/Safari */
+  color: $dark;
+  font-style: italic;
+}
+.search-form input[type="submit"] {
+	background: url('../images/search.svg');
+	border: 0;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	width: 20px;
+}
+.mobile-search input[type="submit"] {
+  background-repeat: no-repeat;
+}
+//override autofill color
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px $light inset !important;
+    -webkit-text-fill-color: $dark !important;
+}

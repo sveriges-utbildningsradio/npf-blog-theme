@@ -1,0 +1,44 @@
+//grid settings
+$main-sm-columns:       12;
+$sidebar-sm-columns:    4;
+$grid-gutter-width:     40px;
+
+//colors
+$black:               	#000000;
+$white:              	#FFFFFF;
+$purple:            	#90237E; 
+$dark:					#222730;
+$light:					#DFE0E1; 
+$orange:              	#EF7D24;
+$green:					#A6D5C2; //#4DAC6F
+
+$theme-colors: (
+    primary: $dark,
+    secondary: $dark,
+    success: $dark,
+    info: $dark,
+    warning: $dark,
+    danger: $dark,
+    light: $dark,
+    dark: $dark
+);
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 961px
+);
+
+// Automatically injected Bower dependencies via wiredep (never manually edit this block)
+// bower:scss
+@import '../../bower_components/bootstrap/scss/bootstrap.scss';
+// endbower
+
+@import 'base';
+@import 'tablet';
+@import 'desktop';
+@import 'mixin';
+@import 'fonts';
+@import 'search';
+@import 'video';

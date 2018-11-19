@@ -1,0 +1,566 @@
+body {
+	font-family: 'Apercu';
+}
+
+// FONTS
+h1 {
+	font-size: 2em;
+}
+h2 {
+	font-size: 20px;
+}
+h3 {
+	font-size: 1.6em;
+}
+p {
+	font-size: 16px;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+.orange {
+	color: $orange;
+	font-weight: 600;
+	border-bottom: 2.3px solid $orange;
+}
+.underline a:hover {
+	text-decoration: underline;
+}
+.tag-buttons {
+	line-height: 50px;
+}
+.tag-buttons a, .tag-cloud-link {
+	background-color: #ddd;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 25px;
+    line-height: 50px;
+    white-space: nowrap;
+}
+.tag-buttons a:hover, .tag-cloud-link:hover {
+    box-shadow: 0 6px 20px -10px;
+    text-decoration: none;
+}
+
+// HEADER PARTS
+header {
+	height: 100px;
+	padding: 20px;
+	background: $green;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 100;
+	box-shadow: 0 4px 11px -7px $dark;
+}
+header .search-form {
+	margin-bottom: 20px;
+}
+.header-search {
+	display: none;
+	position: absolute;
+	top: 35px;
+	left: 115px;
+}
+.mobile-search {
+	display: block;
+}
+// MENU
+.mobile-menu {
+	position: fixed;
+    top: 40px;
+    left: 20px;
+}
+body.menu-active .bars { 
+	display: none;
+}
+body.menu-active .times { 
+	display: block;
+}
+body .times {
+	display: none;
+}
+.navigation {
+	width: 245px;
+	min-height: 200px;
+	height: auto;
+	max-height: calc(100% - 40px);
+	overflow-y: auto;
+	position: fixed;
+	top: 100px;
+	left: -300px;
+	z-index: 30;
+   	-webkit-overflow-scrolling: touch; // mobile safari
+	background-color: $green;
+	box-shadow: 0 7px 12px -5px #222730;
+	padding: 30px 20px;
+}
+//menu objects
+.nav a {
+	color: $dark;
+}
+.nav a:hover {
+	text-decoration: underline;
+}
+.sub-menu {
+	list-style-type: none;
+    padding-left: 12px;
+}
+.sub-menu li {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+nav .nav {
+	display: unset;
+}
+//carousel
+.carousel {
+	margin-bottom: 40px;
+}
+.carousel-indicators li {
+	width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.carousel-box {
+	width: 100%;
+	padding-top: 56.25%;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.caption {
+	position: absolute;
+	left: 0;
+	right: 0;
+	color: $dark;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    line-height: 22px;
+}
+.logo-hover:hover {
+	text-decoration: none;
+}
+.logo {
+    width: 60px;
+    float: right;
+}
+.tagline {
+	position: absolute;
+	top: 28px;
+	left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 20px;
+}
+//MAIN
+main {
+	padding-top: 130px;
+}
+
+// FRONTPAGE PARTS
+body.filter-active .fa-angle-down {
+	transform: rotate(180deg);
+	transition: transform .6s linear;
+}
+body.filter-active .filter-btn {
+	background-color: $purple;
+	color: $white;
+}
+body.filter-active #widget section h3 {
+	color: $black;
+}
+.filter-btn {
+	text-align: center;
+    background-color: $purple;
+    color: $white;
+    padding: 10px;
+    box-shadow: 0 3px 10px -2px $dark;
+    transition: background-color 0.5s ease;
+}
+.filter-btn:hover {
+	background-color: $dark;
+	color: $white;
+}
+.filter-btn:active, .filter-btn:visited, .filter-btn:focus {
+    background-color: $purple;
+    color: $white;
+}
+.filter-btn h2 {
+	display: inline-block;
+	margin: 0;
+}
+.fa-angle-down {
+	font-size: 1.6em;
+	margin-left: 10px;
+	transform: rotate(0deg);
+	transition: transform .6s linear;
+}
+
+// POSTS
+.post-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.layer-container {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+figure {
+	width: unset !important;
+}
+// HOVER LAYER
+.layer {
+	opacity: 0;
+	background: linear-gradient(to right, rgba(239, 48, 57, .7) 0, rgba(144, 35, 126, .7) 100%);
+    position: absolute;
+    transition: opacity 200ms linear;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+.layer-effect:hover .layer {
+	opacity: 1;
+}
+a:hover {
+	text-decoration: none;
+} 
+a.layer-effect:hover h4, a.layer-effect:hover h3, a.layer-effect:hover h5 {
+	text-decoration: underline;
+}
+//gray container on front page
+.newsletter-item {
+	background: $light;
+	padding: 15px;
+	margin-bottom: 10px;
+	transition: transform .5s ease;
+}
+.newsletter-item .news-img {
+	width: 100%;
+	padding-top: 56.25%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.newsletter-item h4, .newsletter-item p {
+	color: $dark;
+}
+.newsletter-item h4 {
+	padding-top: 15px;
+}
+.newsletter-item a {
+    text-decoration: underline;
+}
+.newsletter-iten a:hover {
+	font-weight: bold;
+}
+.post-item, .newsletter-item {
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+.post-item:hover h2 {
+	text-decoration: underline;
+}
+.post-img {
+	width: 100%;
+	padding-top: 56.25%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+}
+.content a {
+	text-decoration: underline;
+}
+.content a:hover {
+	font-weight: bold;
+}
+.post-content a:hover {
+	text-decoration: none;
+}
+.content h1 {
+	margin-top: 15px;
+}
+.post-content h3, .post-content h4 {
+	font-size: 1.5em;
+	margin-top: 15px;
+}
+.post-content h5 {
+	margin-top: 10px;
+}
+.related-contaier {
+	margin-top: 80px;
+	margin-bottom: 50px;
+}
+//video icon
+.video-icon {
+	background-color: rgba(0, 0, 0, .7);
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-bottom-left-radius: 4px;
+}
+.video-icon img {
+    width: 25px;
+    margin: 3px 6px;
+}
+//VIDEO
+video {
+	max-width: 100%;
+	background: transparent url('<?php echo get_template_directory_uri() ?>/dist/images/dark.png') 50% 50% / cover no-repeat;
+}
+video::-webkit-media-controls-overlay-play-button {
+	display: none;
+}
+.custom-play {
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	pointer-events: none;
+}
+.pause {
+	display: none;
+}
+.video-element-container {
+	position: relative;
+}
+#click {
+	min-width: 100%;
+	cursor: pointer;
+}
+.time-share {
+	margin-top: 10px;
+	margin-bottom: 80px;
+	position: relative;
+}
+.time {
+	float: left;
+}
+.share {
+	float: right;
+}
+.share:hover {
+	text-decoration: none;
+	color: $orange;
+}
+.a2a_svg {
+	transition: background-color 0.5s ease;
+}
+.addtoany_list a:hover .a2a_svg {
+	background-color: $orange !important;
+	opacity: 1;
+}
+.addtoany_shortcode {
+	width: auto;
+    display: inline-block;
+}
+.addtoany_list a {
+	padding: 0 2px;
+}
+.so-me {
+	width: 200px;
+	display: none;
+	position: absolute;
+	top: 25px;
+	right: 0;
+	box-shadow: 0px 5px 10px -2px $dark;
+	background-color: $white;
+	padding: 18px;
+	z-index: 10;
+}
+#copy-url {
+	border: none;
+	border-bottom: 1.5px solid $dark;
+    background-color: $light;
+    font-size: 14px;
+    width: 70%;
+    padding-top: 6px;
+}
+#copy-link {
+	display: inline;
+}
+.fa-link:before {
+	background-color: $dark;
+	color: $white;
+	font-size: 18px;
+	padding: 6px;
+	border-radius: 4px;
+	transition: background-color 0.5s ease;
+}
+.fa-link:hover::before {
+	background-color: $orange !important;
+	color: $white;
+}
+#copy-txt {
+	font-size: 14px;
+	text-align: center;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+// FILTER FUNCTION
+.searchandfilter {
+	height: auto;
+	display: none;
+	overflow: hidden;
+	border: 1px solid $white;
+	text-align: center;
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 10px;
+	background-color: $white;
+	box-shadow: 0px 5px 10px -2px $dark;
+}
+#widget {
+	margin: 20px 0 0 0;
+}
+#widget section:first-child h3 {
+	font-size: 1.2em;
+}
+#widget section h3 {
+	font-size: 1em;
+	color: $white;
+}
+.searchandfilter div {
+	margin: 0 25px 25px 25px;
+}
+.searchandfilter ul {
+	padding: 0;
+	margin: 0;
+}
+.searchandfilter > div > ul > li {
+	padding: 0;
+	width: 100%;
+	text-align: initial;
+}
+.searchandfilter .cat-item {
+	width: 100%;
+}
+.searchandfilter input[type=submit] {
+	margin: 0 auto;
+    display: block;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+    border: none;
+    background-color: $dark;
+    color: $white;
+    outline: none;
+    transition: background-color 0.5s ease;
+}
+.searchandfilter input[type=submit]:hover {
+	background-color: $orange;
+}
+//FOOTER
+footer {
+	background-color: $dark;
+	height: auto;
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+footer a, footer p, footer h4, footer .nav a {
+	color: $white;
+}
+footer a:hover {
+	color: $white;
+	text-decoration: underline;
+}
+.newsletter, .widget_socials_ignited {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+// SOCIAL MEDIA WIDGET
+.widget_socials_ignited .ci-socials-ignited-fa i {
+	font-size: 1.5em;
+	color: $white;
+	padding: 10px;
+	transition: color 0.5s ease;
+}
+.widget_socials_ignited a:hover i {
+	color: $orange;
+}
+
+//KONTAKTFORMULÄR
+.contact-fom {
+	margin-top: 40px;
+}
+.wpcf7 form p {
+	color: $dark;
+
+	label {
+		border-bottom: 1.5px solid $dark;
+		width: 100%;
+		margin: 0 auto;
+		display: block;
+
+		span input, textarea {
+			width: 100%;
+			background: transparent;
+			border: none;
+			outline: none;
+			color: $dark;
+		}
+		textarea {
+			height: 100px;
+			width: 100%;
+		}
+	}
+	input[type="submit"] {
+		margin: 0 auto;
+	    display: block;
+	    width: 250px;
+	    padding-top: 5px;
+	    padding-bottom: 5px;
+	    margin-top: 10px;
+	    border: none;
+	    background-color: $dark;
+	    color: $white;
+	    outline: none;
+	    transition: background-color 0.5s ease;
+	}
+	input[type=submit]:hover {
+		background-color: $orange;
+	}
+}
+div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
+	margin: 0 auto;
+	border: 1.5px solid transparent;
+	background-color: $orange;
+	color: $white;
+	padding: 20px;
+}
+.tag-cloud-container {
+	border-top: 1px solid $light;
+}
+.scrollToTop {
+	background-color: $green;
+	display: none;
+	padding: 15px;
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 28;
+	box-shadow: 0 3px 10px -2px $dark;
+}

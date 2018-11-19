@@ -1,0 +1,108 @@
+@include media-breakpoint-up(md) {
+
+h2 {
+	font-size: 1.8em;
+}
+//HEADER
+.header-search {
+	display: block;
+}
+.mobile-search {
+	display: none;
+}
+// MENU
+.mobile-menu {
+    left: 70px;
+}
+.logo {
+    width: 60px;
+    margin-right: 70px;
+}
+.tagline {
+	top: 40%;
+	left: 60%;
+}
+
+.newsletter-item:nth-child(4n+1) {
+	width: 94.5%;
+
+	.news-img {
+		display: inline-flex;
+		width: 50%;
+		padding-top: 29.1%;
+	}
+	.new-txt-content {
+		display: inline-block;
+		float: right;
+		width: 48%;
+
+		h4 {
+			padding-top: 0px;
+		}
+	}
+}
+
+// POSTS
+.post-item:nth-child(4n+1) {
+	width: 100%;
+
+	.layer-container {
+		display: inline-flex;
+		width: 50%;
+	}
+	.post-img {
+		display: inline-block;
+	}
+	.post-content {
+		width: 48%;
+		display: inline-block;
+		float: right;
+	}
+	.post-content h3, .post-content h4 {
+		margin-top: 0;
+	}
+}
+.post-item, .newsletter-item {
+	width: 30%;
+	margin: 10px;
+}
+
+// FILTER FUNCTION
+.searchandfilter {
+	width: 90%;
+}
+.searchandfilter > div > ul > li {
+	display: inline-table;
+	width: 35%;
+}
+
+//FOOTER
+footer .widget, footer .search-form {
+	float: right;
+	clear: both;
+}
+.newsletter {
+	margin-bottom: 0;
+}
+.widget_socials_ignited {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+//Contact form
+.wpcf7 form p label {
+	width: 70%;
+}
+div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
+	width: 532px;
+}
+
+}
+
+//mobile tagline
+@media (max-width: 596px) {
+	.tagline {
+		top: 30px;
+		left: 45%;
+	}
+}
