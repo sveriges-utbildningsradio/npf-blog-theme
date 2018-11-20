@@ -555,7 +555,8 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 	border-top: 1px solid $light;
 }
 .scrollToTop {
-	background-color: $green;
+	background-color: $purple;
+	color: $white;
 	display: none;
 	padding: 15px;
 	position: fixed;
@@ -563,4 +564,7 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 	bottom: 20px;
 	z-index: 28;
 	box-shadow: 0 3px 10px -2px $dark;
+}
+.scrollToTop:hover {
+	color: $white;
 }
