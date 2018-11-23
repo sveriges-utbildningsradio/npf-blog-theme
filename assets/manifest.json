@@ -23,6 +23,6 @@
     }
   },
   "config": {
-    "devUrl": "http://localhost/ur"
+    "devUrl": "http://localhost:8000/foraldrar"
   }
 }
