@@ -13,11 +13,17 @@
 
             // click outside navigation to close menu
             var $menu = $('.navigation, .mobile-menu');
-            $(document).mouseup(function (e) {
+            $(document).bind( 'mouseup touchend', function (e) {
                 if (!$menu.is(e.target) && $menu.has(e.target).length === 0) {
                     /* jshint latedef:nofunc */
                     closeMenu();
                 }
+            });
+
+            $jsTaggar = $('.jsTaggar').find('a');
+            $($jsTaggar).click(function(e) {
+                /* jshint latedef:nofunc */
+                closeMenu();
             });
 
         } else {
