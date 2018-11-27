@@ -3,7 +3,8 @@
     "main.js": {
       "files": [
         "scripts/main.js",
-        "scripts/ur.js"
+        "scripts/ur.js",
+        "scripts/pagination.js"
       ],
       "main": true
     },

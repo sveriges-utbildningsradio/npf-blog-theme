@@ -2,6 +2,7 @@
 /**
  * Template Name: Förstasidan
  */
+	global $wp_query;
 ?>
 <?php $wpPosts = new WP_Query( array('post_type' => 'post', 'posts_per_page' => -1, 'taxonomy' => 'post_tag')); ?>
 
@@ -128,6 +129,10 @@
 				<?php endif; ?>
 				<?php endwhile; wp_reset_postdata(); ?>
 			</div>
+            <?php
+				if (  $wp_query->max_num_pages > 1 )
+				echo '<div class="pag_in_ation"><a href="#">+</a></div>'; // you can use <a> as well
+            ?>
 		</div>
 	</div>
 </div>

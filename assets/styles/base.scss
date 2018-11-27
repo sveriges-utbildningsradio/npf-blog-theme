@@ -568,3 +568,22 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 .scrollToTop:hover {
 	color: $white;
 }
+//Pagination
+.pag_in_ation{
+	background-color: #ddd;
+	border-radius: 2px;
+	display: block;
+	text-align: center;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: 800;
+	letter-spacing:1px;
+	cursor:pointer;
+	text-transform: uppercase;
+	padding: 10px 0;
+	transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.3s ease-in-out;
+}
+.pag_in_ation:hover{
+	background-color: #767676;
+	color: #fff;
+}
