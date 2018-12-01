@@ -151,9 +151,9 @@ nav .nav {
 }
 .tagline {
 	position: absolute;
-	top: 28px;
+	vertical-align: middle;
 	left: 50%;
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
     font-size: 20px;
 }
 //MAIN
@@ -352,13 +352,18 @@ video::-webkit-media-controls-overlay-play-button {
 .time-share {
 	margin-top: 10px;
 	margin-bottom: 80px;
-	position: relative;
+	display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center;
 }
 .time {
-	float: left;
+	margin-bottom: 20px;
+	width: 100%;
 }
-.share {
-	float: right;
+.so-me {
+	margin-bottom: 20px;
+	width: 100%;
 }
 .share:hover {
 	text-decoration: none;
@@ -375,26 +380,18 @@ video::-webkit-media-controls-overlay-play-button {
 	width: auto;
     display: inline-block;
 }
-.addtoany_list a {
-	padding: 0 2px;
+.addtoany_shortcode > div {
+	line-height: 21px !important;
 }
-.so-me {
-	width: 200px;
-	display: none;
-	position: absolute;
-	top: 25px;
-	right: 0;
-	box-shadow: 0px 5px 10px -2px $dark;
-	background-color: $white;
-	padding: 18px;
-	z-index: 10;
+.addtoany_list a {
+	padding: 0;
 }
 #copy-url {
 	border: none;
 	border-bottom: 1.5px solid $dark;
     background-color: $light;
     font-size: 14px;
-    width: 70%;
+    width: 120px;
     padding-top: 6px;
 }
 #copy-link {
@@ -415,8 +412,7 @@ video::-webkit-media-controls-overlay-play-button {
 #copy-txt {
 	font-size: 14px;
 	text-align: center;
-    margin-bottom: 0px;
-    margin-top: 5px;
+    position: absolute;
 }
 // FILTER FUNCTION
 .searchandfilter {

@@ -6,7 +6,9 @@
         ?>
         <img class="logo" alt="UR Logo" src="<?php echo $image[0]; ?>"> 
     </a>
-    <h1 class="tagline"><?php bloginfo('description'); ?></h1>
+    <a aria-label="Tips och inspiration för föräldrar" href="<?= esc_url(home_url('/')); ?>">
+        <h1 class="tagline"><?php bloginfo('description'); ?></h1>
+    </a>
 
     <div class="search-form header-search"><?php get_search_form(); ?></div>
 

@@ -100,9 +100,8 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 }
 
 //mobile tagline
-@media (max-width: 596px) {
-	.tagline {
-		top: 30px;
-		left: 45%;
+@media (max-width: 360px) {
+	#copy-url {
+		width: 93px;
 	}
 }

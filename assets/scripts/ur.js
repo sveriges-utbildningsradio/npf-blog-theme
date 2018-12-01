@@ -68,24 +68,6 @@
 
     });
 
-    //share buttons
-    $('.share').click(function() {
-
-        $('.share').toggleClass( 'active' );
-
-        if( $('.share').hasClass( 'active' ) ) {
-
-            $('.so-me').fadeIn("slow");
-            $('.share').css('color', '#EF7D24');
-
-        } else {
-
-            $('.so-me').fadeOut("slow");
-            $('.share').css('color', 'unset');
-
-        }
-    });
-
     // copy link when selected - share on social media
     $('#copy-url').click(function() {
         this.select();
@@ -105,7 +87,7 @@
 
     // carousel
     $('.carousel').carousel({
-        interval: false
+        interval: 5000
     });
 
     $('#click').click(function () {

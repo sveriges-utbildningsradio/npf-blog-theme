@@ -64,11 +64,16 @@
 				<div class="time-share">
 					<!-- Date -->
 					<div class="time"><?php echo get_the_date(); ?></div>
+
 					<!-- Share -->
-					<div class="share"><i class="fa fa-share-alt"></i> Dela</div>
 					<div class="so-me">
 						<?php $permalink = get_permalink(); ?>
 						<?php $date = date('Ymd'); ?>
+
+						<input id="copy-url" aria-label="Kopiera delbar länk" type="url" value="<?php echo $permalink ?>?cmpid=del:cl:<?php echo $date ?>:foraldrar" readonly="">
+						<div id="copy-link"><i class="fa fa-link"></i></div>
+						<p id="copy-txt"></p>
+
 						<!-- Facebook -->
 						<?php echo do_shortcode( '[addtoany buttons="facebook" url="'. $permalink .'?cmpid=del:fb:'. $date .':foraldrar"]' ); ?>
 						<!-- Facebook Messenger -->
@@ -77,10 +82,6 @@
 						<?php echo do_shortcode( '[addtoany buttons="whatsapp" url="'. $permalink .'?cmpid=del:wa:'. $date .':foraldrar"]' ); ?>
 						<!-- Email -->
 						<?php echo do_shortcode( '[addtoany buttons="email" url="'. $permalink .'?cmpid=del:em:'. $date .':foraldrar"]' ); ?>
-
-						<input id="copy-url" aria-label="Kopiera delbar länk" type="url" value="<?php echo $permalink ?>?cmpid=del:cl:<?php echo $date ?>:foraldrar" readonly="">
-						<div id="copy-link"><i class="fa fa-link"></i></div>
-						<p id="copy-txt"></p>
 					</div>
 				</div>
 
