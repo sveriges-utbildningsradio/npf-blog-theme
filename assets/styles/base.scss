@@ -115,33 +115,7 @@ body .times {
 nav .nav {
 	display: unset;
 }
-//carousel
-.carousel {
-	margin-bottom: 40px;
-}
-.carousel-indicators li {
-	width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
-.carousel-box {
-	width: 100%;
-	padding-top: 56.25%;
-	overflow: hidden;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-.caption {
-	position: absolute;
-	left: 0;
-	right: 0;
-	color: $dark;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    line-height: 22px;
-}
+
 .logo-hover:hover {
 	text-decoration: none;
 }
@@ -567,4 +541,9 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 }
 .scrollToTop:hover {
 	color: $white;
+}
+
+.container.manual {
+	margin-top: 20px;
+	margin-bottom: 40px;
 }

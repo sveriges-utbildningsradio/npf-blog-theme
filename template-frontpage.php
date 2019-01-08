@@ -3,7 +3,9 @@
  * Template Name: Förstasidan
  */
 ?>
-<?php $wpPosts = new WP_Query( array('post_type' => 'post', 'posts_per_page' => -1, 'taxonomy' => 'post_tag')); ?>
+<?php
+$feedType = get_field('feed_type');
+?>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -11,7 +13,7 @@
 
 		    <?php if( have_rows('carousel') ): ?>
 		    	<!-- carousel -->
-		        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-time="<?= get_field('carousel_slide_time') ?>">
 					<ol class="carousel-indicators">
 						<?php $a = 0; ?>
 						<?php while( have_rows('carousel') ) : the_row(); ?>
@@ -24,6 +26,7 @@
 		                <?php while( have_rows('carousel') ) : the_row(); ?>
 		                    <?php $bgImage = get_sub_field('carousel_image'); ?>
 		                    <?php $carouselTxt = get_sub_field('carousel_text'); ?>
+		                    <?php $carouselTxtPos = get_sub_field('carousel_text_position'); ?>
 
 		                    <div class="carousel-item <?php if($f == 0) { echo 'active'; } ?>">
 		                        <?php if($bgImage): ?>
@@ -31,8 +34,8 @@
 		                        <?php endif; ?>
 								
 								<?php if($carouselTxt): ?>
-									<div class="caption">
-										<h3><?php echo $carouselTxt; ?></h3>
+									<div class="caption <?= $carouselTxtPos; ?>">
+										<h3><?= $carouselTxt; ?></h3>
 									</div>
 								<?php endif; ?>
 		                    </div>
@@ -41,7 +44,6 @@
 		            </div>
 		        </div>
 		    <?php endif; ?>
-
 		</div>
 	</div>
 </div>
@@ -71,64 +73,94 @@
 
 <?php endwhile; wp_reset_postdata(); ?>
 
-<div class="container">
-    <div class="row">
-    	<div class="col-12">
+<?php if ($feedType == 'manual-feed'): ?>
 
-			<!-- POSTS -->
-			<div class="post-container">
-				<?php while ( $wpPosts->have_posts() ) : $wpPosts->the_post(); ?>
-					<?php //The image source ?>
-					<?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' ); ?>
+	<div class="container manual">
+		<?php if( have_rows('feed') ):
+		    while ( have_rows('feed') ) : the_row();
+		        if( get_row_layout() == 'three_columns' ):
+		        	get_template_part('parts/three_columns');
+		        elseif( get_row_layout() == 'two_columns' ): 
+		        	get_template_part('parts/two_columns');
+		        endif;
+		    endwhile;
+		endif; ?>
+	</div>
 
-					<?php if($post->ID === 895): ?>
-						<!-- NEWSLETTER -->
-						<?php $pLink = get_field('lank'); ?>
-				
-							<div class="newsletter-item" href="<?php echo $pLink['url']; ?>" target="<?php echo $pLink['target']; ?>">
+<?php else: ?>
+
+	<?php
+
+	$autoArgs = array(
+		'post_type' => 'post',
+		'posts_per_page' => get_field('number_of_posts'),
+		'taxonomy' => 'post_tag'
+	);
+
+	$autoQuery = new WP_Query( $autoArgs );
+
+	?>
+
+	<div class="container">
+	    <div class="row">
+	    	<div class="col-12">
+
+				<!-- POSTS -->
+				<div class="post-container">
+					<?php while ( $autoQuery->have_posts() ) : $autoQuery->the_post(); ?>
+						<?php //The image source ?>
+						<?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' ); ?>
+
+						<?php if($post->ID === 895): ?>
+							<!-- NEWSLETTER -->
+							<?php $pLink = get_field('lank'); ?>
+					
+								<div class="newsletter-item" href="<?php echo $pLink['url']; ?>" target="<?php echo $pLink['target']; ?>">
+									<?php if($postsImg): ?>
+										<?php //The title for image alt/aria attribute ?>
+										<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?> 
+
+										<div class="news-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>"></div>
+									<?php endif; ?>
+									<div class="new-txt-content">
+										<h4><?php the_title(); ?></h4>
+										<?php the_content(); ?>
+									</div>
+								</div>
+
+						<?php else: ?>
+						
+						<div class="post-item">
+							<a class="layer-effect" aria-label="UR Föräldrar inlägg" href="<?php the_permalink(); ?>">	
 								<?php if($postsImg): ?>
 									<?php //The title for image alt/aria attribute ?>
 									<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?> 
-
-									<div class="news-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>"></div>
-								<?php endif; ?>
-								<div class="new-txt-content">
-									<h4><?php the_title(); ?></h4>
-									<?php the_content(); ?>
-								</div>
-							</div>
-
-					<?php else: ?>
-					
-					<div class="post-item">
-						<a class="layer-effect" aria-label="UR Föräldrar inlägg" href="<?php the_permalink(); ?>">	
-							<?php if($postsImg): ?>
-								<?php //The title for image alt/aria attribute ?>
-								<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?> 
-								<div class="layer-container">
-									<?php $file = get_field('video_fil'); ?>
-									<?php $embed = get_field('video_url'); ?>
-									<div class="post-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>">
-										<?php if( $file || $embed ): ?>
-											<div class="video-icon">
-												<img src="<?php echo get_template_directory_uri(); ?>/dist/images/video.svg" alt="Video icon">
-											</div>
-										<?php endif; ?>
+									<div class="layer-container">
+										<?php $file = get_field('video_fil'); ?>
+										<?php $embed = get_field('video_url'); ?>
+										<div class="post-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>">
+											<?php if( $file || $embed ): ?>
+												<div class="video-icon">
+													<img src="<?php echo get_template_directory_uri(); ?>/dist/images/video.svg" alt="Video icon">
+												</div>
+											<?php endif; ?>
+										</div>
+										<div class="layer"></div>
 									</div>
-									<div class="layer"></div>
+								<?php endif; ?>
+								
+								<div class="post-content">
+									<h4><?php the_title(); ?></h4>
+									<?php the_excerpt(); ?>
 								</div>
-							<?php endif; ?>
-							
-							<div class="post-content">
-								<h4><?php the_title(); ?></h4>
-								<?php the_excerpt(); ?>
-							</div>
-						</a>
-					</div>
-				<?php endif; ?>
-				<?php endwhile; wp_reset_postdata(); ?>
+							</a>
+						</div>
+					<?php endif; ?>
+					<?php endwhile; wp_reset_postdata(); ?>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+<?php endif ?>
+
 <a href="#" aria-label="Scroll to top" class="scrollToTop">Hur kan vi hjälpa dig?</a>

@@ -99,7 +99,7 @@
 
     // carousel
     $('.carousel').carousel({
-        interval: false
+        interval: $('.carousel').data('time')
     });
 
     $('#click').click(function () {

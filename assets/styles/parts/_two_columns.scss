@@ -1,0 +1,15 @@
+.two-columns.item {
+	margin: 10px 0;
+
+	h4 {
+		@include media-breakpoint-up(md) {
+			margin-top: 0;
+		}
+	}
+
+	.no-padding-left {
+		@include media-breakpoint-up(md) {
+			padding-left: 0;
+		}
+	}
+}
