@@ -32,7 +32,7 @@
                             $link = get_sub_field('link');
                             $image = get_sub_field('image');
                             ?>
-                            <a class="layer-effect" aria-label="UR Föräldrar inlägg" href="<?php echo $link ?>" target="_blank">
+                            <a class="layer-effect" aria-label="UR Föräldrar inlägg" href="<?php echo $link ?>">
                                 <div class="layer-container">
                                     <?php if($image): ?>
                                         <div class="post-img" style="background-image: url('<?php echo $image['sizes']['medium']?>');" role="img" alt="<?php echo $image['title'] ?>" aria-label="<?php echo $image['title'] ?>"></div>
