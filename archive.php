@@ -46,10 +46,9 @@
 									<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?>
 									
 									 <div class="layer-container">
-										<?php $file = get_field('video_fil'); ?>
 										<?php $embed = get_field('video_url'); ?>
 										<div class="post-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>">
-											<?php if( $file || $embed ): ?>
+											<?php if( $embed ): ?>
 												<div class="video-icon">
 													<img src="<?php echo get_template_directory_uri(); ?>/dist/images/video.svg" alt="Video icon">
 												</div>
