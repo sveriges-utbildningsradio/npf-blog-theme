@@ -4,7 +4,7 @@
 			<?php while (have_posts()) : the_post(); ?>
 
 				<?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' ); ?>
-				<?php $file = get_field('video_fil') ?: get_field('video_url'); ?>
+				<?php $file = get_field('video_url'); ?>
 				
 				<?php if( $file  && $postsImg ): ?>
 					<?php //The title for image alt/aria attribute ?>
@@ -111,6 +111,42 @@
 					<div class="related-contaier">
 						<h4>Relaterat</h4>
 
+						<?php if (get_field('pick_related_posts_manually')) { 
+							if( have_rows('related_posts') ): ?>
+								<div class="row">
+								    <?php while ( have_rows('related_posts') ) : the_row(); 
+								    	$relatedObj = get_sub_field('related_post');
+								    	$relatedId = $relatedObj->ID;
+								    	$relatedImg = wp_get_attachment_image_src( get_post_thumbnail_id($relatedId), 'large' ); 
+								    	?>
+								    	<div class="col-12 col-md-4">
+								    		<a class="layer-effect" aria-label="UR Föräldrar inlägg" href="<?php the_permalink($relatedId); ?>">
+								    			<?php if($relatedImg): ?>
+								    				<?php $title = get_post(get_post_thumbnail_id($relatedImg))->post_title;  ?>
+								    				
+								    				<div class="layer-container">
+								    					<?php $embed = get_field('video_url', $relatedId); ?>
+								    					<div class="post-img" style="background-image: url('<?php echo $relatedImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>">
+								    						<?php if( $embed ): ?>
+								    							<div class="video-icon">
+								    								<img src="<?php echo get_template_directory_uri(); ?>/dist/images/video.svg" alt="Video icon">
+								    							</div>
+								    						<?php endif; ?>
+								    					</div>
+								    					<div class="layer"></div>
+								    				</div>
+								    			<?php endif; ?>
+								    			<div class="post-content">
+								    				<h5><?= $relatedObj->post_title; ?></h5>
+								    			</div> <!-- post-content -->
+								    		</a>
+								    	</div>
+								    <?php endwhile; ?>
+								</div>
+							<?php endif; ?>
+							
+						<?php } else { ?>
+
 						<div class="row">
 							<?php while( $my_query->have_posts() ) : $my_query->the_post() ; ?>
 								<div class="col-12 col-md-4">
@@ -122,10 +158,9 @@
         									<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?>
 											
 											<div class="layer-container">
-												<?php $file = get_field('video_fil'); ?>
 												<?php $embed = get_field('video_url'); ?>
 												<div class="post-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>">
-													<?php if( $file || $embed ): ?>
+													<?php if( $embed ): ?>
 														<div class="video-icon">
 															<img src="<?php echo get_template_directory_uri(); ?>/dist/images/video.svg" alt="Video icon">
 														</div>
@@ -142,6 +177,7 @@
 								</div> <!-- col-12 col-md-4 -->
 							<?php endwhile; wp_reset_postdata(); ?>
 						</div> <!-- row -->
+						<?php } ?>
 					</div> <!-- py-4 -->
 				<?php endif; ?>
 			<?php endif; ?>
