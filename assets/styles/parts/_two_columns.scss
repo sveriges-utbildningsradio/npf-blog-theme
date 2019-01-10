@@ -1,5 +1,9 @@
+.highlight-post .two-columns.item {
+	padding: 15px;
+}
+
 .two-columns.item {
-	margin: 10px 0;
+	margin: 20px 0;
 
 	h4 {
 		@include media-breakpoint-up(md) {
@@ -12,4 +16,7 @@
 			padding-left: 0;
 		}
 	}
+
+
 }
+

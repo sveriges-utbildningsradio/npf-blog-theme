@@ -138,7 +138,7 @@ $feedType = get_field('feed_type');
 						<?php else: ?>
 						
 						<?php if ($highlight != ""): ?>
-							<div class="post-item highlight" style="background-color: <?= $highlight; ?>">
+							<div class="post-item highlight-post" style="background-color: <?= $highlight; ?>">
 							<?php else: ?>
 							<div class="post-item">
 						<?php endif ?>

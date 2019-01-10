@@ -251,7 +251,7 @@ a.layer-effect:hover h4, a.layer-effect:hover h3, a.layer-effect:hover h5 {
             animation: fadein 2s;
 }
 
-.post-item.highlight {
+.highlight-post {
 	padding: 15px 15px 15px;
 	position: relative;
 	
@@ -285,6 +285,10 @@ a.layer-effect:hover h4, a.layer-effect:hover h3, a.layer-effect:hover h5 {
 				box-shadow: 0 6px 20px -10px;
 			}
 		}
+	}
+
+	&.manual {
+		padding: 0;
 	}
 }
 
