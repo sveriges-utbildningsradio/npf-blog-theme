@@ -110,9 +110,13 @@ $feedType = get_field('feed_type');
 
 				<!-- POSTS -->
 				<div class="post-container">
-					<?php while ( $autoQuery->have_posts() ) : $autoQuery->the_post(); ?>
-						<?php //The image source ?>
-						<?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' ); ?>
+					<?php while ( $autoQuery->have_posts() ) : $autoQuery->the_post(); 
+						$postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' ); 
+						$highlight = get_field('highlight_this_post') ? get_field('background_color') : "";
+						$external_link = get_field('use_external_link') ? get_field('external_link') : "";
+						$external_link_text = get_field('external_link_text');
+						?>
+
 
 						<?php if($post->ID === 895): ?>
 							<!-- NEWSLETTER -->
@@ -133,7 +137,11 @@ $feedType = get_field('feed_type');
 
 						<?php else: ?>
 						
-						<div class="post-item">
+						<?php if ($highlight != ""): ?>
+							<div class="post-item highlight" style="background-color: <?= $highlight; ?>">
+							<?php else: ?>
+							<div class="post-item">
+						<?php endif ?>
 							<a class="layer-effect" aria-label="UR Föräldrar inlägg" href="<?php the_permalink(); ?>">	
 								<?php if($postsImg): ?>
 									<?php //The title for image alt/aria attribute ?>
@@ -156,6 +164,11 @@ $feedType = get_field('feed_type');
 									<?php the_excerpt(); ?>
 								</div>
 							</a>
+							<?php if ($highlight != "" && $external_link != ""): ?>
+								<div class="link-container">
+									<a href="<?= $external_link; ?>" target="_blank"><?= $external_link_text; ?></a>
+								</div>
+							<?php endif; ?>
 						</div>
 					<?php endif; ?>
 					<?php endwhile; wp_reset_postdata(); ?>

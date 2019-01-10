@@ -250,6 +250,44 @@ a.layer-effect:hover h4, a.layer-effect:hover h3, a.layer-effect:hover h5 {
          -o-animation: fadein 2s; /* Opera < 12.1 */
             animation: fadein 2s;
 }
+
+.post-item.highlight {
+	padding: 15px 15px 15px;
+	position: relative;
+	
+	@include media-breakpoint-up(lg) {
+		padding: 15px 15px 10px;
+	}
+
+	.link-container {
+		margin-top: 10px;
+		display: flex;
+		justify-content: center;
+
+		@include media-breakpoint-up(lg) {
+			display: inline-block;
+			position: absolute;
+			right: 25%;
+			bottom: 20px;
+			transform: translateX(50%);
+		}
+
+		a {
+			display: block;
+			background-color: #fff;
+			padding: 10px 20px;
+			height: 50px;
+			line-height: 2;
+			border-radius: 25px;
+			font-weight: 700;
+
+			&:hover {
+				box-shadow: 0 6px 20px -10px;
+			}
+		}
+	}
+}
+
 .post-item:hover h2 {
 	text-decoration: underline;
 }
