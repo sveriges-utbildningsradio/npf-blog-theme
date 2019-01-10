@@ -5,6 +5,7 @@
 				$postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
 				$video = get_field('video_url');
 				$title = get_the_title();
+				$hideFeaturedImage = get_field('hide_featured_image');
 				
 				if( $video  && $postsImg ):
                     if( is_string($video)) : ?>
@@ -27,7 +28,7 @@
                         </div>
 
 					<?php endif;
-				elseif( $postsImg ) : ?>
+				elseif( $postsImg && $hideFeaturedImage != 1) : ?>
                     <div class="post-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>"></div>
 				<?php endif; ?>
 

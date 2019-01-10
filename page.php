@@ -2,9 +2,10 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 pb-5">
 			<?php while (have_posts()) : the_post(); ?>
-                <?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' ); ?>
+                <?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' ); 
+                $hideFeaturedImage = get_field('hide_featured_image'); ?>
 
-                <?php if($postsImg): ?>
+                <?php if($postsImg && $hideFeaturedImage != 1): ?>
                 	<?php //The title for image alt/aria attribute ?>
 					<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?>
 					

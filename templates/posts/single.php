@@ -1,16 +1,16 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-12 col-md-10">
-			<?php while (have_posts()) : the_post(); ?>
+			<?php while (have_posts()) : the_post();
 
-				<?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' ); ?>
-				<?php $file = get_field('video_url'); ?>
+				$postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
+				$file = get_field('video_url');
+				$hideFeaturedImage = get_field('hide_featured_image');
 				
-				<?php if( $file  && $postsImg ): ?>
-					<?php //The title for image alt/aria attribute ?>
-        			<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?>
+				if( $file && $postsImg ):
+        			$title = get_post(get_post_thumbnail_id())->post_title;
                     
-                    <?php if( is_string($file)) : ?>
+                    if( is_string($file)) : ?>
                         <div class="video-embed-container">
                             <iframe title="<?php the_title(); ?>"
                                     src="<?php echo $file ?>"
@@ -28,11 +28,9 @@
                             <img class="custom-play play" alt="Play button" src="<?php echo get_template_directory_uri(); ?>/dist/images/Play.svg">
                             <img class="custom-play pause" alt="Pause button" src="<?php echo get_template_directory_uri(); ?>/dist/images/Paus.svg">
                         </div>
-					<?php endif; ?>
-				<?php elseif( $postsImg ) : ?>
-					<?php //The title for image alt/aria attribute ?>
-        			<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?>
-                    
+					<?php endif;
+				elseif( $postsImg && $hideFeaturedImage != 1) :
+        			$title = get_post(get_post_thumbnail_id())->post_title; ?>
                     <div class="post-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>"></div>
 				<?php endif; ?>
 
@@ -43,21 +41,20 @@
 
 				<!-- Tags & Categories -->
 				<?php
-				// Category
 				$post_id = get_the_ID();
 				$category_object = get_the_category($post_id);
 				$category_name = $category_object[0]->name;
 
 				$unCat = 'Uncategorized';
 				$oKat = 'Okategoriserade';
-				?>
-				<?php if(get_the_tag_list() == true): ?>
-					<strong>Taggar: </strong><span class="underline tag-buttons"><?php echo get_the_tag_list('',' ',''); ?></span><br>
-				<?php endif; ?>
 
-				<?php if($category_name === $unCat || $category_name === $oKat || $category_name === ''): ?>
-					<!-- do nothing -->
-				<?php else: ?>
+				if(get_the_tag_list() == true): ?>
+					<strong>Taggar: </strong><span class="underline tag-buttons"><?php echo get_the_tag_list('',' ',''); ?></span><br>
+				<?php endif;
+
+				if($category_name === $unCat || $category_name === $oKat || $category_name === ''):
+					// do nothing
+				else: ?>
 					<strong>Kategori: </strong><span class="underline tag-buttons"><?php echo the_category(' '); ?></span>
 				<?php endif; ?>
 
@@ -86,10 +83,9 @@
 
 				<h6 class="text-center underline"><a href="<?= esc_url(home_url('/')); ?>">Tillbaka till startsidan</a></h6>
 
-			<?php endwhile; wp_reset_postdata(); ?>
+			<?php endwhile; wp_reset_postdata();
 
-			<!-- Related posts -->
-			<?php
+			// Related posts
 			$orig_post = $post;
 			global $post;
 
