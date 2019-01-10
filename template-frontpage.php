@@ -94,7 +94,10 @@ $feedType = get_field('feed_type');
 	$autoArgs = array(
 		'post_type' => 'post',
 		'posts_per_page' => get_field('number_of_posts'),
-		'taxonomy' => 'post_tag'
+		'taxonomy' => 'post_tag',
+		'order' => 'DESC',
+		'orderby' => 'post_date'
+
 	);
 
 	$autoQuery = new WP_Query( $autoArgs );

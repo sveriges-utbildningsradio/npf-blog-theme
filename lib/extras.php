@@ -108,4 +108,13 @@ function taxonomy_init(){
 }
 add_action( 'init', __NAMESPACE__ . '\\taxonomy_init' );
 
+function alter_query( $query ) {
+  // if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
+  if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
+    $query->set( 'posts_per_page', -1 );
+    $query->set( 'orderby', 'post_date' );
+    $query->set( 'order', 'DESC' );
+  }
+}
 
+add_action( 'pre_get_posts', __NAMESPACE__ . '\\alter_query' );
