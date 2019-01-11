@@ -169,13 +169,37 @@ $feedType = get_field('feed_type');
 									<a href="<?= $external_link; ?>" target="_blank"><?= $external_link_text; ?></a>
 								</div>
 							<?php endif; ?>
-						</div>
-					<?php endif; ?>
-					<?php endwhile; wp_reset_postdata(); ?>
+							</div>
+						<?php
+						endif;
+					endwhile;
+					wp_reset_postdata(); ?>
 				</div>
 			</div>
 		</div>
+		
+		<?php 
+		if ($autoQuery->max_num_pages > 1) { ?>
+		<div class="row">
+
+			<div class="col-sm-12">
+				<div class="loadmore-container">
+					<div class="loadmore">Visa mer</div>
+				</div>
+			</div>
+		</div>
+		<?php 
+		}
+		?>
+		
 	</div>
+
+	<script>
+	var posts_custom = '<?php echo serialize( $autoQuery->query_vars ) ?>',
+	    current_page_custom = <?php echo $autoQuery->query_vars['paged'] + 1 ?>,
+	    max_page_custom = <?php echo $autoQuery->max_num_pages ?>;
+	</script>
+	
 <?php endif ?>
 
 <a href="#" aria-label="Scroll to top" class="scrollToTop">Hur kan vi hjälpa dig?</a>

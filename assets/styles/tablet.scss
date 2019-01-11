@@ -63,10 +63,19 @@ h2 {
 	.post-content h3, .post-content h4 {
 		margin-top: 0;
 	}
+
+	&.highlight-post {
+		display: block;
+	}
 }
+
 .post-item, .newsletter-item {
 	width: 30%;
 	margin: 10px;
+
+	&.highlight-post {
+		font-size: 14px;
+	}
 }
 
 // FILTER FUNCTION

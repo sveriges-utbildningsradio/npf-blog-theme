@@ -53,7 +53,6 @@ header {
 	right: 0;
 	left: 0;
 	z-index: 100;
-	box-shadow: 0 4px 11px -7px $dark;
 }
 header .search-form {
 	margin-bottom: 20px;
@@ -94,7 +93,6 @@ body .times {
 	z-index: 30;
    	-webkit-overflow-scrolling: touch; // mobile safari
 	background-color: $green;
-	box-shadow: 0 7px 12px -5px #222730;
 	padding: 30px 20px;
 }
 //menu objects
@@ -588,4 +586,22 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 .container.manual {
 	margin-top: 20px;
 	margin-bottom: 40px;
+}
+
+
+.loadmore-container {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 50px;
+
+	.loadmore {
+		cursor: pointer;
+		background-color: #a6d5c2;
+		padding: 10px 20px;
+		border-radius: 25px;
+
+		&:hover {
+			box-shadow: 0 6px 20px -10px;
+		}
+	}
 }
