@@ -8,7 +8,6 @@
 	$external_link_text = get_field('external_link_text', $postObj->ID);
 	?>
 
-
 	<div class="col-sm-12 col-md-12">
 		<?php if ($highlight != ""): ?>
 			<div class="highlight-post manual" style="background-color: <?= $highlight; ?>">
@@ -36,7 +35,7 @@
 					<div class="col-md-6 no-padding-left">
 					    <div class="post-content">
 							<h4><?= $postObj->post_title; ?></h4>
-							<p><?= $postObj->post_excerpt; ?></p>
+							<p><?= $postObj->post_excerpt ? : $postObj->post_content; ?></p>
 						</div>
 					</div>
 

@@ -1,3 +1,22 @@
 .three-columns.item {
 	margin: 20px 0;
 }
+
+.highlight-post {
+
+	.three-columns.item {
+		padding: 15px;
+	}
+
+	.link-container.three-columns {
+		display: flex;
+		transform: unset;
+		position: relative;
+		right: unset;
+		padding-bottom: 15px;
+
+		@include media-breakpoint-up(lg) {
+			padding-bottom: 0;
+		}
+	}
+}
