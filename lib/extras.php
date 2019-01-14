@@ -226,3 +226,11 @@ function loadmore_ajax_handler(){
   
 add_action('wp_ajax_loadmore', __NAMESPACE__ . '\\loadmore_ajax_handler');
 add_action('wp_ajax_nopriv_loadmore', __NAMESPACE__ . '\\loadmore_ajax_handler');
+
+
+// Add options page
+if( function_exists('acf_add_options_page') ) {
+
+  acf_add_options_page('Temainställningar');
+  
+}

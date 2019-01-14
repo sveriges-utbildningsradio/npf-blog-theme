@@ -437,7 +437,7 @@ video::-webkit-media-controls-overlay-play-button {
 	height: auto;
 	display: none;
 	overflow: hidden;
-	border: 1px solid $white;
+	border: 1px solid #ddd;
 	text-align: center;
 	width: 90%;
 	margin: 0 auto;
@@ -445,6 +445,11 @@ video::-webkit-media-controls-overlay-play-button {
 	background-color: $white;
 	box-shadow: 0px 5px 10px -2px $dark;
 }
+
+.help-container {
+	padding: 10px 0 40px;
+}
+
 #widget {
 	margin: 20px 0 0 0;
 }

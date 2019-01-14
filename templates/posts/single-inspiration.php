@@ -149,3 +149,9 @@
 		</div> <!-- col-12 col-md-10 -->
 	</div> <!-- row justify-content-center -->
 </div> <!-- container -->
+<?php
+if (get_field('show_help_posts', 'options') != null) { ?>
+	<div class="help-container">
+		<?php get_template_part('/parts/help_bar'); ?>
+	</div>
+<?php } ?>

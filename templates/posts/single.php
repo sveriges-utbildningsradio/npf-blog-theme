@@ -80,11 +80,11 @@
 						<p id="copy-txt"></p>
 					</div>
 				</div>
+			<?php endwhile; wp_reset_postdata(); ?>
 
-				<h6 class="text-center underline"><a href="<?= esc_url(home_url('/')); ?>">Tillbaka till startsidan</a></h6>
+			<h6 class="text-center underline"><a href="<?= esc_url(home_url('/')); ?>">Tillbaka till startsidan</a></h6>
 
-			<?php endwhile; wp_reset_postdata();
-
+			<?php
 			// Related posts
 			$orig_post = $post;
 			global $post;
@@ -182,3 +182,11 @@
 		</div> <!-- col-12 col-md-10 -->
 	</div> <!-- row justify-content-center -->
 </div> <!-- container -->
+<?php
+if (get_field('show_help_posts', 'options') != null) { ?>
+	<div class="help-container">
+		<?php get_template_part('/parts/help_bar'); ?>
+	</div>
+<?php } ?>
+
+
