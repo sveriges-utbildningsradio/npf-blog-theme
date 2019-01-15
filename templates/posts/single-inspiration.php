@@ -38,28 +38,7 @@
 				</div>
 
 				<!-- Tags & Categories -->
-				<?php
-				$post_id = get_the_ID();
-				$category_object = get_the_terms($post_id, 'section');
-				$category_list = array();
-
-				if(get_the_tag_list() == true): ?>
-					<strong>Taggar: </strong><span class="underline tag-buttons"><?php echo get_the_tag_list('',' ',''); ?></span><br>
-				<?php endif;
-
-				if (!empty($category_object)) { ?>
-
-
-					<strong>Kategori: </strong><span class="underline tag-buttons">
-
-					<?php 
-					foreach ($category_object as $category) {
-						echo "<a href='" . get_term_link($category) . "'>" . $category->name . "</a>"; 
-					} ?>
-
-					</span><br>
-
-				<?php } ?>
+				<?php get_template_part('parts/post_tags') ?>
 
 
 				<div class="time-share">

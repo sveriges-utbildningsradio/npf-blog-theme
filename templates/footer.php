@@ -15,18 +15,49 @@ $args = array(
 	'echo'                      => true,
 	'child_of'                  => null, // see Note!
 );
-?>
 
+$tax_args = array(
+	// 'name' => array('tag_personer', 'tag_amnen')
+	'public' => true
+);
+$tax_output = 'objects';
+$tax = get_taxonomies($tax_args, $tax_output);
+$taxies = array('tag_personer', 'tag_kanslor', 'tag_utmaningar', 'tag_amnen');
+
+if ($tax) { ?>
 <div class="tag-cloud-container">
 	<div class="container">
-		<div class="row py-5 my-5">
+		<div class="row">
 			<div class="col-12">
-				<h4 id="taggar" class="pb-3">Taggar</h4>
-				<?php wp_tag_cloud($args) ?>
+				
+				<?php 
+				foreach ($tax as $single_tax) {
+
+					if (in_array($single_tax->name, $taxies)) {
+						$terms_args = array(
+							'taxonomy' => $single_tax->name,
+						);
+						$all = get_terms($terms_args);
+						?>
+						<div class="tag-type">
+							<h4><?= $single_tax->label; ?></h4>
+
+							<?php
+							foreach ($all as $single) { ?>
+								<a href="<?= get_term_link($single); ?>" class="tag-cloud-link" style="font-size: 16px;"><?= $single->name; ?></a> <?php
+							} ?>
+						</div>
+						<?php
+					}
+				}
+				?>
 			</div>
 		</div>
 	</div>
 </div>
+<?php 
+}
+?>
 
 <footer>
 	<div class="container">

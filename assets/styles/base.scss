@@ -31,16 +31,20 @@ img {
 	line-height: 50px;
 }
 .tag-buttons a, .tag-cloud-link {
-	background-color: #ddd;
+	background-color: #222730;
     padding: 10px 15px;
-    margin: 5px;
+    margin: 3px;
     border-radius: 25px;
     line-height: 50px;
     white-space: nowrap;
+    color: #fff;
+    transition: .3s box-shadow;
 }
+
 .tag-buttons a:hover, .tag-cloud-link:hover {
-    box-shadow: 0 6px 20px -10px;
+    box-shadow: 0 6px 20px -10px #000;
     text-decoration: none;
+    color: #fff;
 }
 
 // HEADER PARTS
@@ -572,7 +576,33 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 }
 .tag-cloud-container {
 	border-top: 1px solid $light;
+	padding: 50px 0;
+
+	.tag-type {
+		margin-top: 25px;
+
+		&:first-of-type {
+			margin-top: 0;
+		}
+	}
 }
+
+.cat-tag {
+	display: block;
+
+	strong {
+		min-width: 90px;
+		display: inline-block;
+		vertical-align: top;
+		padding-top: 12px;
+	}
+
+	.tags {
+		width: calc(100% - 100px); 
+		display: inline-block;
+	}
+}
+
 .scrollToTop {
 	background-color: $purple;
 	color: $white;

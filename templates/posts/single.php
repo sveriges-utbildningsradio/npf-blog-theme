@@ -40,23 +40,7 @@
 				</div> <!-- post-content -->
 
 				<!-- Tags & Categories -->
-				<?php
-				$post_id = get_the_ID();
-				$category_object = get_the_category($post_id);
-				$category_name = $category_object[0]->name;
-
-				$unCat = 'Uncategorized';
-				$oKat = 'Okategoriserade';
-
-				if(get_the_tag_list() == true): ?>
-					<strong>Taggar: </strong><span class="underline tag-buttons"><?php echo get_the_tag_list('',' ',''); ?></span><br>
-				<?php endif;
-
-				if($category_name === $unCat || $category_name === $oKat || $category_name === ''):
-					// do nothing
-				else: ?>
-					<strong>Kategori: </strong><span class="underline tag-buttons"><?php echo the_category(' '); ?></span>
-				<?php endif; ?>
+				<?php get_template_part('parts/post_tags') ?>
 
 				<div class="time-share">
 					<!-- Date -->
