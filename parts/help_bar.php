@@ -1,26 +1,60 @@
-<?php $wpFrontpage = new WP_Query( array('p' => 804, 'post_type' => 'any')); ?>
-
-<?php while ($wpFrontpage->have_posts()) : $wpFrontpage->the_post(); ?>
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-8">
-				<div class="filter-btn">
-					<h2><?php the_title(); ?></h2>
-					<i class="fa fa-angle-down"></i>
-				</div>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8">
+			<div class="filter-btn">
+				<h2>Hur kan vi hjälpa dig då</h2>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<?php 
-	ob_start();
-	dynamic_sidebar('sidebar-primary');
-	$sidebar = ob_get_contents(); 
-	ob_end_clean(); 
+<div id="helpOverlay" class="help-overlay">
+	<?php
+	$categories = get_categories();
+	$term_args = array(
+		'taxonomy' => 'post_tag'
+	);
+	$terms = get_terms($term_args);
+
+
+
 	?>
-	<div id="widget"><?php echo $sidebar ?></div>
-	
-	<!-- SORT OF POSTS -->
-	<?php echo do_shortcode( '[searchandfilter fields="post_tag,category" types="checkbox,radio" headings="Beteenden,Situationer" operators="OR" submit_label="Sök" empty_search_url="'. esc_url(home_url('/')) .'"]'); ?>
 
-<?php endwhile; wp_reset_postdata(); ?>
+	<div class="help-close"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="help-header">
+					<h1>Hur kan vi hjälpa dig?</h1>
+					<p>Sök på vårt innehåll</p>
+				</div>
+			</div>
+
+
+			<div class="col-6">
+				<ul>
+					<?php foreach ($terms as $term): ?>
+						<li>
+							<label class="checkbox-container"><?= $term->name;  ?>
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+						</li>
+					<?php endforeach ?>
+				</ul>	
+			</div>
+			<div class="col-6">
+				<ul>
+					<?php foreach ($categories as $category):?>
+						<li>
+							<label class="checkbox-container"><?= $category->name; ?>
+								<input type="checkbox">
+								<span class="checkmark"></span>
+							</label>
+						</li>
+					<?php endforeach ?>
+				</ul>	
+			</div>
+		</div>
+	</div>
+</div>

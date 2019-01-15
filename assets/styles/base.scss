@@ -313,6 +313,12 @@ a.layer-effect:hover h4, a.layer-effect:hover h3, a.layer-effect:hover h5 {
 .content h1 {
 	margin-top: 15px;
 }
+
+@include media-breakpoint-up(lg) {
+	.content p {
+		font-size: 18px;
+	}
+}
 .post-content h3, .post-content h4 {
 	font-size: 1.5em;
 	margin-top: 15px;
