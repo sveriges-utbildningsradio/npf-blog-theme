@@ -1,26 +1,61 @@
-<?php $wpFrontpage = new WP_Query( array('p' => 804, 'post_type' => 'any')); ?>
-
-<?php while ($wpFrontpage->have_posts()) : $wpFrontpage->the_post(); ?>
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-8">
-				<div class="filter-btn">
-					<h2><?php the_title(); ?></h2>
-					<i class="fa fa-angle-down"></i>
-				</div>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-8">
+			<!-- <div class="filter-btn"> -->
+			<div class="help-button">
+				<h2>Hur kan vi hjälpa dig?</h2>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<?php 
-	ob_start();
-	dynamic_sidebar('sidebar-primary');
-	$sidebar = ob_get_contents(); 
-	ob_end_clean(); 
+<div id="helpOverlay" class="help-overlay">
+	<?php
+	$categories = get_categories();
+	$term_args = array(
+		'taxonomy' => 'post_tag'
+	);
+	$terms = get_terms($term_args);
 	?>
-	<div id="widget"><?php echo $sidebar ?></div>
-	
-	<!-- SORT OF POSTS -->
-	<?php echo do_shortcode( '[searchandfilter fields="post_tag,category" types="checkbox,radio" headings="Beteenden,Situationer" operators="OR" submit_label="Sök" empty_search_url="'. esc_url(home_url('/')) .'"]'); ?>
 
-<?php endwhile; wp_reset_postdata(); ?>
+	<div class="help-close"><span>Stäng</span></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="help-header">
+					<h1>Hur kan vi hjälpa dig?</h1>
+					<p>Mitt barn kämpar med...</p>
+				</div>
+			</div>
+
+
+			<div class="col-lg-6">
+				<h3>Beteenden/Utmaningar</h3>
+				<ul class="term">
+					<?php foreach ($terms as $term): ?>
+						<li>
+							<label data-term="<?= $term->slug; ?>"><?= $term->name;  ?></label>
+						</li>
+					<?php endforeach ?>
+				</ul>	
+			</div>
+			<div class="col-lg-6">
+				<h3>Situationer</h3>
+				<ul class="cat">
+					<?php foreach ($categories as $category):?>
+						<li>
+							<label class="checkbox-container" data-cat="<?= $category->slug; ?>"><?= $category->name; ?></label>
+						</li>
+					<?php endforeach ?>
+				</ul>	
+			</div>
+
+
+		</div>
+		<div class="help-results">
+			<div class="row">
+			</div>
+		</div>
+	</div>
+</div>

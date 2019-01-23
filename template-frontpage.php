@@ -48,30 +48,8 @@ $feedType = get_field('feed_type');
 	</div>
 </div>
 
-<?php while (have_posts()) : the_post(); ?>
-	<div class="container">
-	    <div class="row justify-content-center">
-	    	<div class="col-12 col-md-8">
-				<div id="help-content" class="filter-btn">
-					<h2><?php the_title(); ?></h2>
-					<i class="fa fa-angle-down"></i>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<?php 
-	ob_start();
-	dynamic_sidebar('sidebar-primary');
-	$sidebar = ob_get_contents(); 
-	ob_end_clean(); 
-	?>
-	<div id="widget"><?php echo $sidebar ?></div>
-
-	<!-- SORT OF POSTS -->
-	<?php echo do_shortcode( '[searchandfilter fields="post_tag,category" headings="Beteenden/utmaningar,Situationer" types="checkbox,radio" operators="OR" submit_label="Sök" empty_search_url="'. esc_url(home_url('/')) .'"]'); ?>
-
-<?php endwhile; wp_reset_postdata(); ?>
+<!-- SORT OF POSTS -->
+<?php get_template_part('/parts/help_bar'); ?>
 
 <?php if ($feedType == 'manual-feed'): ?>
 

@@ -149,26 +149,33 @@ body.filter-active .filter-btn {
 body.filter-active #widget section h3 {
 	color: $black;
 }
-.filter-btn {
+.filter-btn,
+.help-button {
 	text-align: center;
     background-color: $purple;
     color: $white;
     padding: 10px;
     box-shadow: 0 3px 10px -2px $dark;
     transition: background-color 0.5s ease;
+    cursor: pointer;
 }
-.filter-btn:hover {
+.filter-btn:hover,
+.help-button:hover {
 	background-color: $dark;
 	color: $white;
 }
-.filter-btn:active, .filter-btn:visited, .filter-btn:focus {
+.filter-btn:active, .filter-btn:visited, .filter-btn:focus,
+.help-button:active, .help-button:visited, .help-button:focus {
     background-color: $purple;
     color: $white;
 }
-.filter-btn h2 {
+
+.filter-btn h2,
+.help-button h2 {
 	display: inline-block;
 	margin: 0;
 }
+
 .fa-angle-down {
 	font-size: 1.6em;
 	margin-left: 10px;
@@ -316,6 +323,12 @@ a.layer-effect:hover h4, a.layer-effect:hover h3, a.layer-effect:hover h5 {
 }
 .content h1 {
 	margin-top: 15px;
+}
+
+@include media-breakpoint-up(lg) {
+	.content p {
+		font-size: 18px;
+	}
 }
 .post-content h3, .post-content h4 {
 	font-size: 1.5em;
