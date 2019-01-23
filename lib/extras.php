@@ -124,7 +124,7 @@ add_action( 'pre_get_posts', __NAMESPACE__ . '\\alter_query' );
 // Ajax loading
 function my_load_more_scripts() {
  
-  global $wp_query; 
+  global $wp_query;
 
   wp_register_script( 'my_loadmore', get_stylesheet_directory_uri() . '/myloadmore.js', array('jquery') );
 
@@ -137,8 +137,98 @@ function my_load_more_scripts() {
  
   wp_enqueue_script( 'my_loadmore' );
 }
- 
+
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\my_load_more_scripts' );
+
+
+function get_help_results_ajax_handler(){
+
+  $terms = $_POST['terms'];
+  $category = $_POST['category'];
+
+  
+
+  $args = array(
+    'posts_per_page' => 3,
+    'orderby' => 'date',
+    'post_status' => 'publish',
+    'tax_query' => array(
+
+      'relation' => 'AND',
+    )
+  );
+
+  if (!empty($terms)) {
+    array_push($args['tax_query'], array(
+      'taxonomy' => 'post_tag',
+      'field' => 'slug',
+      'terms' => $terms
+    ));
+  }
+
+  if (!empty($category)) {
+    array_push($args['tax_query'], array(
+      'taxonomy' => 'category',
+      'field' => 'slug',
+      'terms' => $category
+    ));
+  }
+
+  
+
+
+
+  query_posts( $args );
+
+  if( have_posts() ) :
+    while( have_posts() ): the_post();
+
+      $postObj = get_sub_field('post');
+      $postImg = wp_get_attachment_image_src( get_post_thumbnail_id($postObj->ID), 'medium' );
+      $embed = get_field('video_url', $post->ID); 
+      $highlight = get_field('highlight_this_post', $post->ID) ? get_field('background_color', $post->ID) : "";
+      $external_link = get_field('use_external_link', $post->ID) ? get_field('external_link', $post->ID) : "";
+      $external_link_text = get_field('external_link_text', $post->ID);
+      ?>
+      
+        <div class="col-sm-12 col-md-4">
+
+          <a href="<?= get_permalink($post->ID); ?>" class="layer-effect">
+            <div class="three-columns item">
+              <?php if($postImg): ?>
+
+            <div class="layer-container">
+              <div class="post-img" style="background-image: url('<?= $postImg[0]; ?>')" role="img" alt="<?= $postObj->post_title; ?>" aria-label="<?= $postObj->post_title; ?>">
+                <?php if( $embed ): ?>
+                  <div class="video-icon">
+                    <img src="<?php echo get_template_directory_uri(); ?>/dist/images/video.svg" alt="Video icon">
+                  </div>
+                <?php endif; ?>
+              </div>
+              <div class="layer"></div>
+            </div>
+            <?php endif; ?>
+
+              <div class="post-content">
+              <h4><?php the_title(); ?></h4>
+              <p><?php the_excerpt(); ?></p>
+            </div>
+
+          </div>
+        </a>
+
+      </div>
+
+    <?php
+
+    endwhile;
+  endif;
+  die;
+
+}
+
+add_action('wp_ajax_get_help_results', __NAMESPACE__ . '\\get_help_results_ajax_handler');
+add_action('wp_ajax_nopriv_get_help_results', __NAMESPACE__ . '\\get_help_results_ajax_handler');
 
 
 function loadmore_ajax_handler(){

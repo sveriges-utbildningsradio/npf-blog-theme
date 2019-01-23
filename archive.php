@@ -26,9 +26,12 @@
 	<div id="widget"><?php echo $sidebar ?></div>
 	
 	<!-- SORT OF POSTS -->
-	<?php echo do_shortcode( '[searchandfilter fields="post_tag,category" types="checkbox,radio" headings="Beteenden,Situationer" operators="OR" submit_label="Sök" empty_search_url="'. esc_url(home_url('/')) .'"]'); ?>
+	<?php get_template_part('/parts/help_bar'); ?>
 
 <?php endwhile; wp_reset_postdata(); ?>
+
+
+<?php echo "<pre>", print($_GET['test']), "</pre>"; ?>
 
 <div class="container">
 	<?php if( have_posts() ): ?>

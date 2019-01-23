@@ -219,4 +219,66 @@
     //Hide Category forever - Inspiration
     $('.cat-item-4').hide();
 
+
+    // Help bar
+    $('.help-button').click(function(){
+        $('.help-overlay').addClass('show');
+    });
+
+    $('.help-close').click(function(){
+        $('.help-overlay').removeClass('show');
+    });
+
+    $('.help-overlay li label').on('click', function(e){
+
+        var allTerms = [];
+        var cat = "";
+
+        $(this).toggleClass('active');
+        
+        $('.help-overlay li label.active').each(function(){
+            if (allTerms.indexOf($(this).data('term') > -1)) {
+                allTerms.push($(this).data('term'));
+            }
+
+            if($(this).parents('ul').hasClass('cat')){
+                cat = $(this).data('cat');
+            }
+        });
+
+        var data = {
+            'action' : 'get_help_results',
+            'terms' : allTerms,
+            'query': loadmore_params.posts,
+            'category' : cat
+        };
+
+        if (allTerms.length > 0 || cat !== "") {
+            $.ajax({
+              type: "POST",
+              url: loadmore_params.ajaxurl,
+              data: data,
+              beforeSend : function ( xhr ) {
+                $('.help-results .row').html("");
+              },
+              success: function(data){
+                if (data !== "") {
+                    $('.help-results .row').html("");
+                    $('.help-results .row').append('<div class="col-12"><h3>Resultat</h3></div>');
+                    $('.help-results .row').append(data);
+                    $('.help-results .row').append('<div class="col-12"><h3>Visa mer</h3></div>');
+                    
+                } else {
+                    $('.help-results .row').html("");
+                    $('.help-results .row').append('<div class="col-12"><h3>Inga resultat</h3></div>');
+                }
+              },
+            });
+        } else {
+            $('.help-results .row').html("");
+        }
+    });
+
+
+
 })(jQuery);
