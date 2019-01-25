@@ -32,13 +32,11 @@ function excerpt_more() {
 }
 add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
 
+// Register post type "Inspiration"
+get_template_part('/lib/custom/my_cpt');
 
-// Custom post types
-require_once 'custom/my_cpt.php';
-
-// Custom taxonomies
-require_once 'custom/my_tags.php';
-
+// Register custom tags and taxonomies
+get_template_part('/lib/custom/my_tags');
 
 
 function alter_query( $query ) {
@@ -76,24 +74,24 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\my_load_more_scripts' );
 
 function get_help_results_ajax_handler(){
 
-  $terms = $_POST['terms'];
   $category = $_POST['category'];
-
-  
+  $terms = $_POST['terms'];
+  $taxonomies = $_POST['taxonomies'];
+  $usedTaxes = [];
+  $usedTerms = [];
 
   $args = array(
-    'posts_per_page' => 3,
+    'posts_per_page' => -1,
     'orderby' => 'date',
     'post_status' => 'publish',
     'tax_query' => array(
-
-      'relation' => 'AND',
+      // 'relation' => 'AND',
     )
   );
 
-  if (!empty($terms)) {
+  foreach ($taxonomies as $taxonomy) {
     array_push($args['tax_query'], array(
-      'taxonomy' => 'post_tag',
+      'taxonomy' => $taxonomy,
       'field' => 'slug',
       'terms' => $terms
     ));
@@ -107,13 +105,13 @@ function get_help_results_ajax_handler(){
     ));
   }
 
-  
-
-
-
   query_posts( $args );
+  global $wp_query;
+  $postsCount = count($wp_query->posts);
 
   if( have_posts() ) :
+
+    $counter = 1;
     while( have_posts() ): the_post();
 
       $postObj = get_sub_field('post');
@@ -127,7 +125,7 @@ function get_help_results_ajax_handler(){
         <div class="col-sm-12 col-md-4">
 
           <a href="<?= get_permalink($post->ID); ?>" class="layer-effect">
-            <div class="three-columns item">
+            <div class="three-columns item" data-count="<?= $postsCount; ?>">
               <?php if($postImg): ?>
 
             <div class="layer-container">
@@ -153,6 +151,12 @@ function get_help_results_ajax_handler(){
       </div>
 
     <?php
+
+    if ($counter === 3) {
+      die();
+    }
+
+    $counter++;
 
     endwhile;
   endif;

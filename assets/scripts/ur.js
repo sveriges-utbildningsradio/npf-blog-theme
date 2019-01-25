@@ -231,26 +231,56 @@
 
     $('.help-overlay li label').on('click', function(e){
 
-        var allTerms = [];
-        var cat = "";
+        var allTerms = [],
+            cat = "",
+            moreLink,
+            allTaxTypes = [];
 
-        $(this).toggleClass('active');
+        if ($(this).parents('ul').hasClass('cat')) {
+            $('ul.cat label').removeClass('active');
+            $(this).toggleClass('active');
+        } else {
+            $(this).toggleClass('active');    
+        }
         
         $('.help-overlay li label.active').each(function(){
-            if (allTerms.indexOf($(this).data('term') > -1)) {
+
+            // Save tag slug
+            if (allTerms.indexOf($(this).data('term')) === -1 && $(this).data('term') !== undefined) {
                 allTerms.push($(this).data('term'));
+            }
+
+            // Save taxonomy type
+            if (allTaxTypes.indexOf($(this).data('type')) === -1 && $(this).data('term') !== undefined) {
+                allTaxTypes.push($(this).data('type'));
             }
 
             if($(this).parents('ul').hasClass('cat')){
                 cat = $(this).data('cat');
+
+                if ($(this).data('cat') !== "") {
+                    moreLink = $('.show-more').data('url') + "/" + $(this).data('cat');
+                }
             }
         });
+
+        moreLink = $('.show-more').data('url') + "/?alter=1";
+
+        if (allTerms !== undefined && allTerms.length > 0) {
+            moreLink += "&terms=" + allTerms + "&tax=" + allTaxTypes;
+        }
+
+        if (cat !== undefined && cat !== "") {
+            moreLink += "&cate=" + cat;
+        }
+
 
         var data = {
             'action' : 'get_help_results',
             'terms' : allTerms,
             'query': loadmore_params.posts,
-            'category' : cat
+            'category' : cat,
+            'taxonomies' : allTaxTypes
         };
 
         if (allTerms.length > 0 || cat !== "") {
@@ -260,17 +290,43 @@
               data: data,
               beforeSend : function ( xhr ) {
                 $('.help-results .row').html("");
+                $('.help-overlay .loader').addClass('loading');
+                $('.show-more-text').css('visibility', 'hidden');
               },
+
               success: function(data){
+
+                $('.help-overlay .loader').removeClass('loading');
+                $('.show-more').attr('href', moreLink);
+
                 if (data !== "") {
                     $('.help-results .row').html("");
                     $('.help-results .row').append('<div class="col-12"><h3>Resultat</h3></div>');
                     $('.help-results .row').append(data);
-                    $('.help-results .row').append('<div class="col-12"><h3>Visa mer</h3></div>');
-                    
+
+                    var numberOfPosts = Number($('.help-results .item').data('count'));
+
+                    $('.help-results h3').text( numberOfPosts + ' resultat');
+
+                    $('#mobHelper h3').text('Visa resultat (' + numberOfPosts + ')');
+
+                    $("#mobHelper").click(function() {
+                        $('#helpOverlay').animate({
+                            scrollTop: $(".help-results")[0].offsetTop - 10
+                        }, 500);
+                        $(this).removeClass('show');
+                    });
+                    $('#mobHelper').addClass('show');
+
+                    if (numberOfPosts > 3) {
+                        $('.show-more-text').text('Visa mer');
+                        $('.show-more-text').css('visibility', 'visible');
+                    }
                 } else {
+                    $('#mobHelper').removeClass('show');
                     $('.help-results .row').html("");
-                    $('.help-results .row').append('<div class="col-12"><h3>Inga resultat</h3></div>');
+                    $('.show-more-text').css('visibility', 'visible');
+                    $('.show-more-text').text('Inga resultat');
                 }
               },
             });

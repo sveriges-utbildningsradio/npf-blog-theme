@@ -35,69 +35,69 @@ function taxonomy_init(){
   register_taxonomy( 'section', 'inspiration', $args );
 
 
-  // Register the "Personer" tag
-  $tag_personer_labels = array(
-    'name'                       => _x( 'Personer', 'taxonomy general name', 'textdomain' ),
-    'singular_name'              => _x( 'Person', 'taxonomy singular name', 'textdomain' ),
-    'search_items'               => __( 'Search Personer', 'textdomain' ),
-    'popular_items'              => __( 'Popular Personer', 'textdomain' ),
-    'all_items'                  => __( 'All Personer', 'textdomain' ),
+  // Register the "Experter" tag
+  $tag_experter_labels = array(
+    'name'                       => _x( 'Experter', 'taxonomy general name', 'textdomain' ),
+    'singular_name'              => _x( 'Expert', 'taxonomy singular name', 'textdomain' ),
+    'search_items'               => __( 'Search Experter', 'textdomain' ),
+    'popular_items'              => __( 'Popular Experter', 'textdomain' ),
+    'all_items'                  => __( 'All Experter', 'textdomain' ),
     'parent_item'                => null,
     'parent_item_colon'          => null,
-    'edit_item'                  => __( 'Edit Person', 'textdomain' ),
-    'update_item'                => __( 'Update Person', 'textdomain' ),
-    'add_new_item'               => __( 'Add New Person', 'textdomain' ),
-    'new_item_name'              => __( 'New Person Name', 'textdomain' ),
-    'separate_items_with_commas' => __( 'Separate Personer with commas', 'textdomain' ),
-    'add_or_remove_items'        => __( 'Add or remove Personer', 'textdomain' ),
-    'choose_from_most_used'      => __( 'Choose from the most used Personer', 'textdomain' ),
-    'not_found'                  => __( 'No Personer found.', 'textdomain' ),
-    'menu_name'                  => __( 'Personer', 'textdomain' ),
+    'edit_item'                  => __( 'Edit Expert', 'textdomain' ),
+    'update_item'                => __( 'Update Expert', 'textdomain' ),
+    'add_new_item'               => __( 'Add New Expert', 'textdomain' ),
+    'new_item_name'              => __( 'New Expert Name', 'textdomain' ),
+    'separate_items_with_commas' => __( 'Separate Experter with commas', 'textdomain' ),
+    'add_or_remove_items'        => __( 'Add or remove Experter', 'textdomain' ),
+    'choose_from_most_used'      => __( 'Choose from the most used Experter', 'textdomain' ),
+    'not_found'                  => __( 'No Experter found.', 'textdomain' ),
+    'menu_name'                  => __( 'Experter', 'textdomain' ),
   );
 
-  $tag_personer_args = array(
+  $tag_experter_args = array(
     'hierarchical'          => true,
-    'labels'                => $tag_personer_labels,
+    'labels'                => $tag_experter_labels,
     'show_ui'               => true,
     'show_admin_column'     => false,
     'update_count_callback' => '_update_post_term_count',
     'query_var'             => true,
-    'rewrite'               => array( 'slug' => 'personer' ),
+    'rewrite'               => array( 'slug' => 'experter' ),
   );
 
-  register_taxonomy( 'tag_personer', ['post', 'inspiration'], $tag_personer_args);
+  register_taxonomy( 'tag_experter', ['post', 'inspiration'], $tag_experter_args);
 
-  // Register the "Känslor" tag
-  $tag_kanslor_labels = array(
-    'name'                       => _x( 'Känslor', 'taxonomy general name', 'textdomain' ),
-    'singular_name'              => _x( 'Känsla', 'taxonomy singular name', 'textdomain' ),
-    'search_items'               => __( 'Search Känslor', 'textdomain' ),
-    'popular_items'              => __( 'Popular Känslor', 'textdomain' ),
-    'all_items'                  => __( 'All Känslor', 'textdomain' ),
+  // Register the "Diagnoser" tag
+  $tag_diagnoser_labels = array(
+    'name'                       => _x( 'Diagnoser', 'taxonomy general name', 'textdomain' ),
+    'singular_name'              => _x( 'Diagnos', 'taxonomy singular name', 'textdomain' ),
+    'search_items'               => __( 'Search Diagnoser', 'textdomain' ),
+    'popular_items'              => __( 'Popular Diagnoser', 'textdomain' ),
+    'all_items'                  => __( 'All Diagnoser', 'textdomain' ),
     'parent_item'                => null,
     'parent_item_colon'          => null,
-    'edit_item'                  => __( 'Edit Känsla', 'textdomain' ),
-    'update_item'                => __( 'Update Känsla', 'textdomain' ),
-    'add_new_item'               => __( 'Add New Känsla', 'textdomain' ),
-    'new_item_name'              => __( 'New Känsla Name', 'textdomain' ),
-    'separate_items_with_commas' => __( 'Separate Känslor with commas', 'textdomain' ),
-    'add_or_remove_items'        => __( 'Add or remove Känslor', 'textdomain' ),
-    'choose_from_most_used'      => __( 'Choose from the most used Känslor', 'textdomain' ),
-    'not_found'                  => __( 'No Känslor found.', 'textdomain' ),
-    'menu_name'                  => __( 'Känslor', 'textdomain' ),
+    'edit_item'                  => __( 'Edit Diagnos', 'textdomain' ),
+    'update_item'                => __( 'Update Diagnos', 'textdomain' ),
+    'add_new_item'               => __( 'Add New Diagnos', 'textdomain' ),
+    'new_item_name'              => __( 'New Diagnos Name', 'textdomain' ),
+    'separate_items_with_commas' => __( 'Separate Diagnoser with commas', 'textdomain' ),
+    'add_or_remove_items'        => __( 'Add or remove Diagnoser', 'textdomain' ),
+    'choose_from_most_used'      => __( 'Choose from the most used Diagnoser', 'textdomain' ),
+    'not_found'                  => __( 'No Diagnoser found.', 'textdomain' ),
+    'menu_name'                  => __( 'Diagnoser', 'textdomain' ),
   );
 
-  $tag_kanslor_args = array(
+  $tag_diagnoser_args = array(
     'hierarchical'          => true,
-    'labels'                => $tag_kanslor_labels,
+    'labels'                => $tag_diagnoser_labels,
     'show_ui'               => true,
     'show_admin_column'     => false,
     'update_count_callback' => '_update_post_term_count',
     'query_var'             => true,
-    'rewrite'               => array( 'slug' => 'kanslor' ),
+    'rewrite'               => array( 'slug' => 'diagnoser' ),
   );
 
-  register_taxonomy( 'tag_kanslor', ['post', 'inspiration'], $tag_kanslor_args);
+  register_taxonomy( 'tag_diagnoser', ['post', 'inspiration'], $tag_diagnoser_args);
 
   // Register the "Utmaningar" tag
   $tag_utmaningar_labels = array(
@@ -131,37 +131,37 @@ function taxonomy_init(){
 
   register_taxonomy( 'tag_utmaningar', ['post', 'inspiration'], $tag_utmaningar_args);
 
-  // Register the "Ämnen" tag
-  $tag_amnen_labels = array(
-    'name'                       => _x( 'Ämnen', 'taxonomy general name', 'textdomain' ),
-    'singular_name'              => _x( 'Ämne', 'taxonomy singular name', 'textdomain' ),
-    'search_items'               => __( 'Search Ämnen', 'textdomain' ),
-    'popular_items'              => __( 'Popular Ämnen', 'textdomain' ),
-    'all_items'                  => __( 'All Ämnen', 'textdomain' ),
+  // Register the "Övrigt" tag
+  $tag_ovrigt_labels = array(
+    'name'                       => _x( 'Övrigt', 'taxonomy general name', 'textdomain' ),
+    'singular_name'              => _x( 'Övrigt', 'taxonomy singular name', 'textdomain' ),
+    'search_items'               => __( 'Search Övrigt', 'textdomain' ),
+    'popular_items'              => __( 'Popular Övrigt', 'textdomain' ),
+    'all_items'                  => __( 'All Övrigt', 'textdomain' ),
     'parent_item'                => null,
     'parent_item_colon'          => null,
-    'edit_item'                  => __( 'Edit Ämne', 'textdomain' ),
-    'update_item'                => __( 'Update Ämne', 'textdomain' ),
-    'add_new_item'               => __( 'Add New Ämne', 'textdomain' ),
-    'new_item_name'              => __( 'New Ämne Name', 'textdomain' ),
-    'separate_items_with_commas' => __( 'Separate Ämnen with commas', 'textdomain' ),
-    'add_or_remove_items'        => __( 'Add or remove Ämnen', 'textdomain' ),
-    'choose_from_most_used'      => __( 'Choose from the most used Ämnen', 'textdomain' ),
-    'not_found'                  => __( 'No Ämnen found.', 'textdomain' ),
-    'menu_name'                  => __( 'Ämnen', 'textdomain' ),
+    'edit_item'                  => __( 'Edit Övrigt', 'textdomain' ),
+    'update_item'                => __( 'Update Övrigt', 'textdomain' ),
+    'add_new_item'               => __( 'Add New Övrigt', 'textdomain' ),
+    'new_item_name'              => __( 'New Övrigt Name', 'textdomain' ),
+    'separate_items_with_commas' => __( 'Separate Övrigt with commas', 'textdomain' ),
+    'add_or_remove_items'        => __( 'Add or remove Övrigt', 'textdomain' ),
+    'choose_from_most_used'      => __( 'Choose from the most used Övrigt', 'textdomain' ),
+    'not_found'                  => __( 'No Övrigt found.', 'textdomain' ),
+    'menu_name'                  => __( 'Övrigt', 'textdomain' ),
   );
 
-  $tag_amnen_args = array(
+  $tag_ovrigt_args = array(
     'hierarchical'          => true,
-    'labels'                => $tag_amnen_labels,
+    'labels'                => $tag_ovrigt_labels,
     'show_ui'               => true,
     'show_admin_column'     => false,
     'update_count_callback' => '_update_post_term_count',
     'query_var'             => true,
-    'rewrite'               => array( 'slug' => 'amnen' ),
+    'rewrite'               => array( 'slug' => 'ovrigt' ),
   );
 
-  register_taxonomy( 'tag_amnen', ['post', 'inspiration'], $tag_amnen_args);
+  register_taxonomy( 'tag_ovrigt', ['post', 'inspiration'], $tag_ovrigt_args);
 }
 add_action( 'init', __NAMESPACE__ . '\\taxonomy_init' );
 

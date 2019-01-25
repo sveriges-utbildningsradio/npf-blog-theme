@@ -13,16 +13,15 @@ $args = array(
 	'link'                      => 'view', 
 	'taxonomy'					=> array( 'post_tag', 'extra' ),
 	'echo'                      => true,
-	'child_of'                  => null, // see Note!
+	'child_of'                  => null,
 );
 
 $tax_args = array(
-	// 'name' => array('tag_personer', 'tag_amnen')
 	'public' => true
 );
 $tax_output = 'objects';
 $tax = get_taxonomies($tax_args, $tax_output);
-$taxies = array('tag_personer', 'tag_kanslor', 'tag_utmaningar', 'tag_amnen');
+$taxies = array('tag_utmaningar', 'tag_experter', 'tag_diagnoser', 'tag_ovrigt');
 
 if ($tax) { ?>
 <div class="tag-cloud-container">

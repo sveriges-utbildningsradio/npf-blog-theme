@@ -19,8 +19,7 @@ else: ?>
 
 
 
-$tag_arr = array('tag_personer', 'tag_amnen', 'tag_utmaningar', 'tag_kanslor');
-// $terms = wp_get_post_terms($post->ID, $tag_arr);
+$tag_arr = array('tag_utmaningar', 'tag_experter', 'tag_diagnoser', 'tag_ovrigt');
 
 foreach ($tag_arr as $tag) {
 	$terms = wp_get_post_terms($post->ID, $tag);

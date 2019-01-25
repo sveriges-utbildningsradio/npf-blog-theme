@@ -7,6 +7,120 @@
 $feedType = get_field('feed_type');
 ?>
 
+<!-- Ändra flödet om användaren har filtrerat -->
+
+<?php if (isset($_GET['alter'])) { ?>
+	
+	<?php
+	$alterTerms = explode(',', $_GET['terms']);
+	$alterTaxonomies = explode(',', $_GET['tax']);
+	$alterCategory = $_GET['cate'];
+	$alterTermsLength = sizeof($alterTerms);
+	$alterArgs = array(
+		'posts_per_page' => -1,
+		'orderby' => 'date',
+		'order' => 'DESC',
+		'post_status' => 'publish',
+		'tax_query' => array(
+		  // 'relation' => 'AND',
+		)
+	);
+
+	if ($alterTerms[0] != "") {
+		foreach ($alterTaxonomies as $alterTaxonomy) {
+			array_push($alterArgs['tax_query'], array(
+				'taxonomy' => $alterTaxonomy,
+				'field' => 'slug',
+				'terms' => $alterTerms
+				)
+			);
+		}
+	}
+
+	if ($alterCategory) {
+		array_push($alterArgs['tax_query'], array(
+			'taxonomy' => 'category',
+			'field' => 'slug',
+			'terms' => $alterCategory
+			)
+		);
+	}
+
+	$alterQuery = new WP_Query($alterArgs);
+
+	if ( $alterQuery->have_posts() ) { ?>
+		<div class="container">
+			<div class="row">
+				<!-- <div class="col-12"> -->
+				<!-- <?php
+				if ($alterTermsLength > 1) {
+
+					$resultMsg = "Resultat med taggarna " . str_replace(',', ', ', $_GET['terms']);	?>
+					<?php 
+					if ($alterCategory) {
+						$resultMsg .= " och kategorin " . ucfirst(get_term_by('slug', $alterCategory, 'category')->name);
+					} ?>
+
+					<h3><?= $resultMsg; ?></h3> <?php 
+					
+				} else if($alterTermsLength == 1 && !empty($alterTerms[0])){
+					$resultMsg = "Resultat med taggen " . $_GET['terms']; 
+
+					if ($alterCategory) {
+						$resultMsg .= " och kategorin " . ucfirst(get_term_by('slug', $alterCategory, 'category')->name);
+					}
+					?>
+					<h3><?= $resultMsg; ?></h3>
+					<?php 
+				} else if (!empty($alterCategory)) { ?>
+					<h3>Resultat med kategorin <?= ucfirst($alterCategory); ?></h3>
+				<?php } ?> -->
+				<!-- </div> -->
+
+				<div class="col-12">
+					<!-- POSTS -->
+					<div class="post-container">
+						<?php while ( $alterQuery->have_posts() ) { $alterQuery->the_post(); ?>
+
+							<div class="post-item">
+								<a class="layer-effect" aria-label="UR Föräldrar inlägg" href="<?php the_permalink(); ?>">	
+									<?php $postsImg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' ); ?>
+									<?php if($postsImg): ?>
+										<?php //The title for image alt/aria attribute ?>
+										<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?>
+										
+										 <div class="layer-container">
+											<?php $embed = get_field('video_url'); ?>
+											<div class="post-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>">
+												<?php if( $embed ): ?>
+													<div class="video-icon">
+														<img src="<?php echo get_template_directory_uri(); ?>/dist/images/video.svg" alt="Video icon">
+													</div>
+												<?php endif; ?>
+											</div>
+											<div class="layer"></div>
+										</div>
+									<?php endif; ?>
+									
+									<div class="post-content">
+										<h3><?php the_title(); ?></h3>
+										<?php the_excerpt(); ?>
+									</div>
+								</a>
+							</div>
+
+						<?php } wp_reset_postdata(); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+
+	<div class="minor-margin"><?php get_template_part('/parts/help_bar'); ?></div>
+<?php 
+} else { ?>
+
+
 <div class="container">
     <div class="row justify-content-center">
     	<div class="col-12">
@@ -180,4 +294,6 @@ $feedType = get_field('feed_type');
 	
 <?php endif ?>
 
-<a href="#" aria-label="Scroll to top" class="scrollToTop">Hur kan vi hjälpa dig?</a>
+<?php } ?>
+
+<!-- <a href="#" aria-label="Scroll to top" class="scrollToTop">Hur kan vi hjälpa dig?</a> -->

@@ -24,7 +24,6 @@
 		display: block;
 	}
 
-
 	.help-header {
 		margin-top: 65px;
 		margin-bottom: 20px;
@@ -94,6 +93,32 @@
 		}
 	}
 
+	.mob-helper {
+		display: none;
+		cursor: pointer;
+		position: fixed;
+		height: 50px;
+		top: 15px;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 1;
+
+		h3 {
+			border: 1px solid #fff;
+			padding: 10px 20px;
+			background-color: #222730;
+			font-size: 22px;
+		}
+
+		&.show {
+			display: block;
+
+			@include media-breakpoint-up(md) {
+				display: none;
+			}
+		}
+	}
+
 	ul {
 		padding: 0;
 
@@ -139,7 +164,7 @@
 	}
 
 	.help-results {
-		margin-top: 50px;
+		margin-top: 20px;
 
 		h2 {
 			color: #fff;
@@ -157,6 +182,84 @@
 
 			p {
 				color: #fff;
+			}
+		}
+
+		&>.row>div {
+			animation: fadein 1s;
+		}
+	}
+
+	.show-more {
+		display: block;
+		text-align: center;
+	}
+
+	.show-more-text {
+		color: #222730;
+		padding: 10px 20px;
+		background-color: #fff;
+		border-radius: 25px;
+		display: inline-block;
+		visibility: hidden;
+	}
+
+	.loader {
+		margin-top: 20px;
+		width: 100%;
+		position: relative;
+		height: 6px;
+		overflow: hidden; 
+
+		.line {
+			visibility: hidden;
+		}
+
+		&.loading .line {
+			width: 75px;
+			display: inline-block;
+			left: 0;
+			height: 6px;
+			visibility: visible;
+			position: absolute;
+			background-image: url('../images/loader-line.svg');
+			background-repeat: no-repeat;
+			animation-name: loaderLine;
+			animation-duration: 1s;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+			animation-direction: alternate;
+			transform: translateX(-50%);
+
+			@include media-breakpoint-up(md) {
+				width: 200px;
+			}
+
+			@include media-breakpoint-up(lg) {
+				width: 300px;
+			}
+		}
+	}
+
+	@keyframes loaderLine {
+		0% {
+			left: 0%;
+		}
+
+		100% {
+			left: 100%;
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+
+		@keyframes loaderLine {
+			0% {
+				transform: translateX(-150px);
+			}
+
+			100% {
+				transform: translateX(715px);
 			}
 		}
 	}
