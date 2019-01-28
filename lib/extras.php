@@ -85,7 +85,7 @@ function get_help_results_ajax_handler(){
     'orderby' => 'date',
     'post_status' => 'publish',
     'tax_query' => array(
-      // 'relation' => 'AND',
+      'relation' => 'AND',
     )
   );
 

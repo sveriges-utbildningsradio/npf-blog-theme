@@ -642,7 +642,8 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 	justify-content: center;
 	padding-bottom: 50px;
 
-	.loadmore {
+	.loadmore,
+	.loadmore-manual {
 		cursor: pointer;
 		background-color: #a6d5c2;
 		padding: 10px 20px;
@@ -656,4 +657,13 @@ div.wpcf7-mail-sent-ok, div.wpcf7-validation-errors {
 
 .minor-margin {
 	margin-bottom: 20px;
+}
+
+
+.view-more-row {
+	animation: fadein 2s;
+
+	&.hide {
+		display: none;
+	}
 }

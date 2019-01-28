@@ -102,6 +102,7 @@
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 1;
+		width: 205px;
 
 		h3 {
 			border: 1px solid #fff;
@@ -202,6 +203,7 @@
 		border-radius: 25px;
 		display: inline-block;
 		visibility: hidden;
+		margin-bottom: 60px;
 	}
 
 	.loader {

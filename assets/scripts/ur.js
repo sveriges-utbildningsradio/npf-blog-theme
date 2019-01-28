@@ -335,6 +335,25 @@
         }
     });
 
+    $('.loadmore-manual').click(function(){
+        var hiddenRows = $('.view-more-row.hide');
+        if (hiddenRows.length >= 3) {
+            $('.view-more-row.hide')[2].classList.remove('hide');
+            $('.view-more-row.hide')[1].classList.remove('hide');
+            $('.view-more-row.hide')[0].classList.remove('hide');
+            if (hiddenRows.length === 1) { $(this).fadeOut(); }
+        } else if (hiddenRows.length === 2) {
+            $('.view-more-row.hide')[1].classList.remove('hide');
+            $('.view-more-row.hide')[0].classList.remove('hide');
+            if (hiddenRows.length === 1) { $(this).fadeOut(); }
+        } else if (hiddenRows.length === 1) {
+            $('.view-more-row.hide')[0].classList.remove('hide');
+            if (hiddenRows.length === 1) { $(this).fadeOut(); }
+        } else {
+            $(this).fadeOut();
+        }
+    });
+
 
 
 })(jQuery);

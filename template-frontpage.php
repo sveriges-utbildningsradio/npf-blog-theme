@@ -165,17 +165,42 @@ $feedType = get_field('feed_type');
 <!-- SORT OF POSTS -->
 <?php get_template_part('/parts/help_bar'); ?>
 
-<?php if ($feedType == 'manual-feed'): ?>
+<?php if ($feedType == 'manual-feed'):
+
+	$rowsToLoad = 10;
+	$rowCounter = 0;
+
+	?>
 
 	<div class="container manual">
 		<?php if( have_rows('feed') ):
 		    while ( have_rows('feed') ) : the_row();
-		        if( get_row_layout() == 'three_columns' ):
-		        	get_template_part('parts/three_columns');
-		        elseif( get_row_layout() == 'two_columns' ): 
-		        	get_template_part('parts/two_columns');
-		        endif;
-		    endwhile;
+		    	if ($rowCounter >= $rowsToLoad) { ?>
+		    		<div class="view-more-row hide">
+		    		<?php 
+		    		if( get_row_layout() == 'three_columns' ):
+		    			get_template_part('parts/three_columns');
+		    		elseif( get_row_layout() == 'two_columns' ): 
+		    			get_template_part('parts/two_columns');
+		    		endif;
+		    		?>
+		    		</div>
+		    		<?php
+		    	} else {
+			        if( get_row_layout() == 'three_columns' ):
+			        	get_template_part('parts/three_columns');
+			        elseif( get_row_layout() == 'two_columns' ): 
+			        	get_template_part('parts/two_columns');
+			        endif;
+		        }
+		        $rowCounter++;
+		    endwhile; ?>
+
+		    <div class="loadmore-container">
+		    	<div class="loadmore-manual">Visa mer</div>
+		    </div>
+
+		    <?php 
 		endif; ?>
 	</div>
 
@@ -214,18 +239,18 @@ $feedType = get_field('feed_type');
 							<!-- NEWSLETTER -->
 							<?php $pLink = get_field('lank'); ?>
 					
-								<div class="newsletter-item" href="<?php echo $pLink['url']; ?>" target="<?php echo $pLink['target']; ?>">
-									<?php if($postsImg): ?>
-										<?php //The title for image alt/aria attribute ?>
-										<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?> 
+							<div class="newsletter-item" href="<?php echo $pLink['url']; ?>" target="<?php echo $pLink['target']; ?>">
+								<?php if($postsImg): ?>
+									<?php //The title for image alt/aria attribute ?>
+									<?php $title = get_post(get_post_thumbnail_id())->post_title;  ?> 
 
-										<div class="news-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>"></div>
-									<?php endif; ?>
-									<div class="new-txt-content">
-										<h4><?php the_title(); ?></h4>
-										<?php the_content(); ?>
-									</div>
+									<div class="news-img" style="background-image: url('<?php echo $postsImg[0];?>');" role="img" alt="<?php echo $title ?>" aria-label="<?php echo $title ?>"></div>
+								<?php endif; ?>
+								<div class="new-txt-content">
+									<h4><?php the_title(); ?></h4>
+									<?php the_content(); ?>
 								</div>
+							</div>
 
 						<?php else: ?>
 						
@@ -295,5 +320,3 @@ $feedType = get_field('feed_type');
 <?php endif ?>
 
 <?php } ?>
-
-<!-- <a href="#" aria-label="Scroll to top" class="scrollToTop">Hur kan vi hjälpa dig?</a> -->

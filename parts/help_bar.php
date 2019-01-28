@@ -18,12 +18,22 @@
 			'tag_diagnoser',
 			'tag_ovrigt'
 		),
+		'slug' => array(
+			'motorik',
+			'sociala-relationer',
+			'sprakstorning',
+			'somn-problem',
+			'utbrott-och-kanslor',
+			'vardagsrutiner',
+			'hemmasittare',
+		),
+		'orderby' => 'description'
 	);
 	$terms = get_terms($term_args);
 
 	// slug
 	$tagsToShow = array(
-		'koncentrationssvarigheter',
+		'hemmasittare',
 		'motorik',
 		'sociala-relationer',
 		'sprakstorning',
@@ -31,6 +41,7 @@
 		'utbrott-och-kanslor',
 		'vardagsrutiner',
 	);
+
 	?>
 
 	<div class="help-close"><span>Stäng</span></div>
@@ -49,16 +60,13 @@
 				</div>
 			</div>
 
-
 			<div class="col-lg-6">
 				<h3>Beteenden/Utmaningar</h3>
 				<ul class="term">
 					<?php foreach ($terms as $term): ?>
-						<?php if (in_array($term->slug, $tagsToShow)): ?>
-							<li>
-								<label data-type="<?= $term->taxonomy; ?>" data-term="<?= $term->slug; ?>"><?= $term->name; ?></label>
-							</li>	
-						<?php endif ?>
+						<li>
+							<label data-type="<?= $term->taxonomy; ?>" data-term="<?= $term->slug; ?>"><?= $term->name; ?></label>
+						</li>	
 					<?php endforeach ?>
 				</ul>	
 			</div>
